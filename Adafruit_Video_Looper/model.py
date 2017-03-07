@@ -21,16 +21,16 @@ class Playlist(object):
             return None
         # Start Random movie
         if self._is_random:
-            self._index = random.randrange(0, len(self._movies))
+            self._index = random.randrange(0, len(self._movies)-1)
         else:
             # Start at the first movie and increment through them in order.
             if self._index is None:
-                self._index = 0
+                self._index = len(self._movies)-1
             else:
-                self._index += 1
+                self._index -= 1
             # Wrap around to the start after finishing.
-            if self._index >= len(self._movies):
-                self._index = 0
+            if self._index == -1:
+                self._index = len(self._movies)-1
 
         return self._movies[self._index]
 
